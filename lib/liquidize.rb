@@ -1,5 +1,6 @@
 require 'liquidize/version'
+require 'liquidize/helper'
+require 'liquidize/model'
 
 module Liquidize
-  # Your code goes here...
 end

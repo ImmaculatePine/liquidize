@@ -21,3 +21,5 @@ tmp
 *.a
 mkmf.log
 .DS_Store
+spec/dummy/log
+spec/dummy/db/*.sqlite3
