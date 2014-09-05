@@ -121,7 +121,7 @@ RSpec.describe Liquidize::Model do
         page = Page.create(body: valid_body)
         page_from_db = Page.find(page.id)
         expect(page_from_db).not_to receive(:parse_liquid_body!)
-        render = page.render_body({ username: 'Alex' })
+        render = page_from_db.render_body({ username: 'Alex' })
         expect(render).to eq('Hi, Alex')
       end
     end

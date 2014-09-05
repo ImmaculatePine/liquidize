@@ -44,7 +44,8 @@ module Liquidize
             return result unless result.nil?
 
             if respond_to?("liquid_#{attribute}") && send("liquid_#{attribute}").present?
-              decoded_template = Marshal.load(Base64.strict_decode64("liquid_#{attribute}"))
+              dump = send("liquid_#{attribute}")
+              decoded_template = Marshal.load(Base64.strict_decode64(dump))
               instance_variable_set("@liquid_#{attribute}_template", decoded_template)
             else
               send("parse_#{attribute}_template!")
