@@ -1,5 +1,8 @@
 # Liquidize
 
+[![Build Status](https://travis-ci.org/ImmaculatePine/liquidize.svg?branch=master)](https://travis-ci.org/ImmaculatePine/liquidize)
+[![Code Climate](https://codeclimate.com/github/ImmaculatePine/liquidize/badges/gpa.svg)](https://codeclimate.com/github/ImmaculatePine/liquidize)
+
 Ruby library that adds [Liquid](http://liquidmarkup.org) template language support to your project.
 
 ## Installation
