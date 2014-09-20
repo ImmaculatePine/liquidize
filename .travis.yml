@@ -4,3 +4,10 @@ rvm:
   - 2.0.0
   - 2.1.0
   - ruby-head
+env:
+  - DB=sqlite
+script:
+  - cd spec/dummy/
+  - RAILS_ENV=test bundle exec rake db:migrate
+  - cd ../../
+  - bundle exec rspec spec/
