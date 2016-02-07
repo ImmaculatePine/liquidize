@@ -27,7 +27,8 @@ module Liquidize
         def define_parse_liquid_method(attribute)
           define_method "parse_liquid_#{attribute}!" do
             begin
-              parsed_value = Liquid::Template.parse(body)
+              original_value = public_send(attribute)
+              parsed_value = Liquid::Template.parse(original_value)
               instance_variable_set("@liquid_#{attribute}_template", parsed_value)
               if activerecord? && respond_to?("liquid_#{attribute}")
                 send("liquid_#{attribute}=", Base64.strict_encode64(Marshal.dump(parsed_value)))

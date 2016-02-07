@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20140904151853) do
 
-  create_table "pages", force: true do |t|
+  create_table "pages", force: :cascade do |t|
     t.text "body"
     t.text "liquid_body"
   end

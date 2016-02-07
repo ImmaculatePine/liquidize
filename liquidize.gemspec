@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 1.9.3'
 
-  spec.add_dependency 'liquid'
+  spec.add_dependency 'liquid', '~> 3.0.6'
 
   spec.add_development_dependency 'bundler', "~> 1.6"
   spec.add_development_dependency 'rake'

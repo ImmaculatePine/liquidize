@@ -69,7 +69,7 @@ RSpec.describe Liquidize::Model do
   describe 'setter' do
     let(:valid_body) { "Hi, {{username}}" }
     let(:invalid_body) { "Hi, {{username" }
-    let(:syntax_error_message) { "Variable '{{' was not properly terminated with regexp: /\\}\\}/ " }
+    let(:syntax_error_message) { "Liquid syntax error: Variable '{{' was not properly terminated with regexp: /\\}\\}/" }
 
     shared_examples 'both' do
       it 'still works as default setter' do
