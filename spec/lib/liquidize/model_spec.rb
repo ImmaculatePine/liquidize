@@ -12,7 +12,7 @@ RSpec.describe Liquidize::Model do
   describe 'include' do
     shared_examples 'both' do
       it 'adds class methods' do
-        expect(klass).to respond_to(:liquidize )
+        expect(klass).to respond_to(:liquidize)
       end
     end
 
@@ -51,7 +51,7 @@ RSpec.describe Liquidize::Model do
     shared_examples 'both' do
       it 'renders valid template' do
         page.body = 'Hello, {{username}}!'
-        expect(page.render_body({ username: 'Alex' })).to eq('Hello, Alex!')
+        expect(page.render_body(username: 'Alex')).to eq('Hello, Alex!')
       end
     end
 
@@ -67,13 +67,13 @@ RSpec.describe Liquidize::Model do
   end
 
   describe 'setter' do
-    let(:valid_body) { "Hi, {{username}}" }
-    let(:invalid_body) { "Hi, {{username" }
+    let(:valid_body) { 'Hi, {{username}}' }
+    let(:invalid_body) { 'Hi, {{username' }
     let(:syntax_error_message) { "Liquid syntax error: Variable '{{' was not properly terminated with regexp: /\\}\\}/" }
 
     shared_examples 'both' do
       it 'still works as default setter' do
-        expect{ page.body = valid_body }.to change(page, :body).from(nil).to(valid_body)
+        expect { page.body = valid_body }.to change(page, :body).from(nil).to(valid_body)
       end
 
       it 'parses new value' do
@@ -83,18 +83,18 @@ RSpec.describe Liquidize::Model do
 
       it 'does not set @*_syntax_error instance variable with valid body' do
         page.instance_variable_set(:@body_syntax_error, nil) # prevent warning
-        expect{ page.body = valid_body }.not_to change{ page.instance_variable_get(:@body_syntax_error) }
-      end      
+        expect { page.body = valid_body }.not_to change { page.instance_variable_get(:@body_syntax_error) }
+      end
 
       it 'sets @*_syntax_error instance variable with invalid body' do
         page.instance_variable_set(:@body_syntax_error, nil) # prevent warning
-        expect{ page.body = invalid_body }.to change{ page.instance_variable_get(:@body_syntax_error) }.from(nil).to(syntax_error_message)
+        expect { page.body = invalid_body }.to change { page.instance_variable_get(:@body_syntax_error) }.from(nil).to(syntax_error_message)
       end
 
       it 'resets syntax error when valid value is passed' do
         page.instance_variable_set(:@body_syntax_error, nil) # prevent warning
-        expect{ page.body = invalid_body }.to change{ page.instance_variable_get(:@body_syntax_error) }.from(nil).to(syntax_error_message)
-        expect{ page.body = valid_body }.to change{ page.instance_variable_get(:@body_syntax_error) }.from(syntax_error_message).to(nil)
+        expect { page.body = invalid_body }.to change { page.instance_variable_get(:@body_syntax_error) }.from(nil).to(syntax_error_message)
+        expect { page.body = valid_body }.to change { page.instance_variable_get(:@body_syntax_error) }.from(syntax_error_message).to(nil)
       end
     end
 
@@ -114,14 +114,14 @@ RSpec.describe Liquidize::Model do
       it 'value with syntax error makes record invalid' do
         page.body = invalid_body
         expect(page).not_to be_valid
-        expect(page.errors.messages).to eq({body: [syntax_error_message]})
+        expect(page.errors.messages).to eq(body: [syntax_error_message])
       end
 
       it 'does not parse body for the second time if it was already parsed and saved' do
         page = Page.create(body: valid_body)
         page_from_db = Page.find(page.id)
         expect(page_from_db).not_to receive(:parse_liquid_body!)
-        render = page_from_db.render_body({ username: 'Alex' })
+        render = page_from_db.render_body(username: 'Alex')
         expect(render).to eq('Hi, Alex')
       end
     end
