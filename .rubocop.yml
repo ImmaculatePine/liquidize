@@ -1,0 +1,16 @@
+AllCops:
+  Exclude:
+    - spec/dummy/db/schema.rb
+
+Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 90
+  Exclude:
+    - liquidize.gemspec
+    - spec/**/*
+
+Metrics/MethodLength:
+  Exclude:
+    - lib/liquidize/model.rb
