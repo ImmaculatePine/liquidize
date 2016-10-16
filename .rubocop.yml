@@ -14,3 +14,6 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Exclude:
     - lib/liquidize/model.rb
+
+FrozenStringLiteralComment:
+  Enabled: false
