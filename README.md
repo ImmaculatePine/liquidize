@@ -17,7 +17,9 @@ And then execute:
 
 ## Usage
 
-Include `Liquidize::Model` mixin to your model and specify liquidized attribute:
+### PORO
+
+Include `Liquidize::Model` mixin to your model and specify the liquidized attribute:
 
     class Page
       include Liquidize::Model
@@ -28,7 +30,7 @@ Include `Liquidize::Model` mixin to your model and specify liquidized attribute:
 Now you can set the body and render it with any options:
 
     page = Page.new
-    page.body = "Hello, {{username}}!"
+    page.body = 'Hello, {{username}}!'
     page.render_body(username: 'John') # => "Hello, John!"
 
 Liquid works much faster if once parsed template is cached. Just add `liquid_*` pair attribute and Liquidize will use it to store dump of parsed template.
@@ -68,17 +70,17 @@ Use it the same way:
     reloaded_email.render_message # parses template again
     # => "Oops, I changed the message!"
 
-It makes record invalid if there is syntax error in your liquid template:
+It makes record invalid if there are any syntax errors in the liquid template:
 
-    # email.message = "Hey, {{username, I think, there is an error."
-    # email.valid? # => false
+    email.message = 'Hey, {{username, I think, there is an error.'
+    email.valid? # => false
 
-    # email.message = "Hey, {{username}}, everything is ok now."
-    # email.valid? # => true
+    email.message = 'Hey, {{username}}, everything is ok now.'
+    email.valid? # => true
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/liquidize/fork )
+1. Fork it (https://github.com/ImmaculatePine/liquidize/fork)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
