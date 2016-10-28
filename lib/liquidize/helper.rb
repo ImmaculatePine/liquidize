@@ -7,6 +7,8 @@ module Liquidize
       if options.is_a?(Hash)
         options.stringify_keys!
         options.each { |_k, v| recursive_stringify_keys(v) }
+      elsif options.is_a?(Array)
+        options.map! { |a| recursive_stringify_keys(a) }
       end
       options
     end
