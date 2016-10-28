@@ -9,8 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Alexander Borovykh']
   spec.email         = ['immaculate.pine@gmail.com']
   spec.summary       = 'Ruby library that adds Liquid template language support to your project.'
-  spec.description   = 'Ruby library that adds Liquid template language support to your project.'
-  spec.homepage      = ''
+  spec.homepage      = 'https://github.com/ImmaculatePine/liquidize'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
