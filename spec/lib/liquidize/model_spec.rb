@@ -83,7 +83,7 @@ RSpec.describe Liquidize::Model do
 
       it 'does not set @*_syntax_error instance variable with valid body' do
         page.instance_variable_set(:@body_syntax_error, nil) # prevent warning
-        expect { page.body = valid_body }.not_to change { page.instance_variable_get(:@body_syntax_error) }
+        expect { page.body = valid_body }.not_to(change { page.instance_variable_get(:@body_syntax_error) })
       end
 
       it 'sets @*_syntax_error instance variable with invalid body' do

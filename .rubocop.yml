@@ -11,6 +11,10 @@ Metrics/LineLength:
     - liquidize.gemspec
     - spec/**/*
 
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+
 Metrics/MethodLength:
   Exclude:
     - lib/liquidize/model.rb

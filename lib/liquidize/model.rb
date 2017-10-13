@@ -16,7 +16,7 @@ module Liquidize
         override_setter(attribute)
         return unless Liquidize::Helper.activerecord?(self)
         define_validator(attribute)
-        validate "validate_#{attribute}_liquid_syntax"
+        validate :"validate_#{attribute}_liquid_syntax"
       end
 
       private

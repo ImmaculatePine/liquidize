@@ -6,7 +6,7 @@ module Liquidize
     def self.recursive_stringify_keys(options)
       if options.is_a?(Hash)
         options.stringify_keys!
-        options.each { |_k, v| recursive_stringify_keys(v) }
+        options.each_value { |v| recursive_stringify_keys(v) }
       elsif options.is_a?(Array)
         options.map! { |a| recursive_stringify_keys(a) }
       end
@@ -23,9 +23,12 @@ module Liquidize
     # Decodes dump into the Ruby object
     # @param dump [String] encoded dump
     # @return [Object] decoded object
+    # @todo Find better alternative to Marshal.load
+    # rubocop:disable Security/MarshalLoad
     def self.decode(dump)
       Marshal.load(Base64.strict_decode64(dump))
     end
+    # rubocop:enable
 
     # Analogue of the ActiveSupport #present? method
     # @param value [Object] value that should be checked
